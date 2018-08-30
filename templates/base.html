@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Shop Homepage - Start Bootstrap Template</title>
+    <title>Dark Side Shop</title>
 
     <!-- Bootstrap core CSS -->
     <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
@@ -31,19 +31,17 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item active">
-              <a class="nav-link" href="#">Home
+              <a class="nav-link" href="{% url 'shop:ProductList' %}">Главная
                 <span class="sr-only">(current)</span>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">About</a>
+              <a class="nav-link" href="#">Доставка и оплата</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Services</a>
+              <a class="nav-link" href="#">Контакты</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Contact</a>
-            </li>
+            
           </ul>
         </div>
       </div>
@@ -53,7 +51,7 @@
     <div class="container">
 
       <div class="row">
-        <div class="col-md-3 col-sm-3">
+        <div class="col-lg-3">
             <br>
             <div>
                 {% block category %} {% endblock %}
@@ -61,13 +59,13 @@
             <br>
         </div>
 
-
-
         <div class="col-lg-9">
 
         {% block carousel %} {% endblock %}
             <br>
+            {% block description %} {% endblock %}
           <div class="row">
+
             {% block content %}{% endblock %}
           </div>
         </div>

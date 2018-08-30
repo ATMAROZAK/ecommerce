@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+
+{% block category %}
+    {% for cat in categories %}
+        <a href="{{ cat.get_absolute_url }}" class="list-group-item">{{ cat.name }}</a>
+        <ul class="list-group bg-dark">
+            <li class="list-group-item bg-dark">
+                <br>
+                {% for sub in subcategories %}
+                    {% if sub.category.name == cat.name %}
+                            <a href="{{ sub.get_absolute_url }}" class="list-group-item">{{ sub.name }}</a>
+                        <br>
+                    {% endif %}
+                {% endfor %}
+            </li>
+        </ul>
+        <br>
+    {% endfor %}
+{% endblock %}
+
+
+{% block content %}
+    <div class="span5">
+            <img src="{{ product.image.url }}" class="img-polaroid" alt="{{ product.name }}">
+            </div>
+            <div class="span7">
+                <h2>{{ product.name }}</h2>
+                <p>{{ product.description }}</p>
+                <hr>
+                <h3>{{ product.price }}р.</h3>
+                <br>
+                <p><a href="#" class="btn btn-success btn-large">В корзину</a></p>
+            </div>
+{% endblock %}

@@ -20,12 +20,25 @@
             </li>
         </ul>
         <br>
+
     {% endfor %}
-
-
-
-
 {% endblock %}
+
+
+{% block description %}
+    {% if subcategory %}
+        <h1>{{ subcategory.name }}</h1>
+        <p1>{{ subcategory.description }}</p1>
+        <hr>
+    {% elif category %}
+        <h1>{{ category.name }}</h1>
+        <p1>{{ category.description }}</p1>
+        <hr>
+    {% endif %}
+{% endblock %}
+
+
+
 {% block content %}
     {% for product in products %}
         <div class="col-lg-4 col-md-6 mb-4">
