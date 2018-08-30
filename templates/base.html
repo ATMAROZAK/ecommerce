@@ -41,7 +41,18 @@
             <li class="nav-item">
               <a class="nav-link" href="#">Контакты</a>
             </li>
-            
+            <li>
+                <button class="btn btn-outline-primary" onclick="location.href='{% url "cart:CartDetail" %}'">
+                    {% with total_items=cart|length %}
+                        {% if cart|length > 0 %}
+                            Корзина:
+                                {{ total_items }} тов. {{ cart.get_total_price }} руб.
+                         {% else %}
+                              Корзина пустая
+                        {% endif %}
+                    {% endwith %}
+                </button>
+            </li>
           </ul>
         </div>
       </div>
@@ -51,6 +62,7 @@
     <div class="container">
 
       <div class="row">
+      <div class="col-lg12">{% block cart_detail %}{% endblock %}</div>
         <div class="col-lg-3">
             <br>
             <div>

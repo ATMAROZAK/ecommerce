@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from .models import Category, Product, Subcategory
+from cart.forms import CartAddProductForm
 
 # Страница с товарами
 def ProductList(request, category_slug=None, subcategory_slug=None):
@@ -43,8 +44,9 @@ def ProductList(request, category_slug=None, subcategory_slug=None):
 def ProductDetail(request, brand_slug, slug):
     categories = Category.objects.all()
     subcategories = Subcategory.objects.all()
-
+    cart_product_form = CartAddProductForm()
     product = get_object_or_404(Product, brand__slug=brand_slug, slug=slug, available=True)
     return render(request, 'shop/detail.html', {'product': product,
                                                 'categories' : categories,
-                                                'subcategories': subcategories})
+                                                'subcategories': subcategories,
+                                                'cart_product_form': cart_product_form})

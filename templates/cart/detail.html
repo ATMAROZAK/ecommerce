@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+{% block cart_detail %}
+<div class="container mb-4">
+    <div class="row">
+        <div class="col-12">
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col"> </th>
+                            <th scope="col">Product</th>
+                            <th scope="col" class="text-center">Quantity</th>
+                            <th scope="col" class="text-right">Price</th>
+                            <th> </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for item in cart %}
+                        {% with product=item.product %}
+                            <tr>
+                                <td><img src="{{ product.image.url }}" width="256" height="128"/> </td>
+                                <td><a href="{{ product.get_absolute_url }}">{{ product.name }}</a></td>
+                                <td><form action="{% url "cart:CartAdd" product.id %}" method="post" class="add">
+                                    {{ item.update_quantity_form.quantity }}
+                                    {{ item.update_quantity_form.update }}
+                                    {% csrf_token %}
+                                    <input type="submit" value="Обновить">
+                                </form></td>
+                                <td class="text-right">{{ item.price }}р.</td>
+                                <td class="text-right"><a href="{% url "cart:CartRemove" product.id %}">Удалить</a></td>
+                            </tr>
+                        {% endwith %}
+                    {% endfor %}
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>Товары</td>
+                            <td class="text-right">0 р.</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>Доставка</td>
+                            <td class="text-right">0 р.</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+
+                            <td></td>
+                            <td><strong>Итого</strong></td>
+                            <td class="text-right"><strong>{{ cart.get_total_price }} р.</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="col mb-2">
+            <div class="row">
+                <div class="col-sm-12  col-md-6">
+                    <button class="btn btn-block btn-light" onclick="location.href='{% url "shop:ProductList"%}'">Продолжить покупки</button>
+                </div>
+                <div class="col-sm-12 col-md-6 text-right">
+                    <button class="btn btn-lg btn-block btn-success text-uppercase">Оплата</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
