@@ -5,6 +5,7 @@ from django.urls import reverse
 class Brand(models.Model):
     name = models.CharField(max_length=200, db_index=True)
     slug = models.SlugField(max_length=200, db_index=True, unique=True)
+    description = models.CharField(max_length=255, null=True)
 
     class Meta:
         ordering = ['name']
@@ -18,6 +19,7 @@ class Brand(models.Model):
 class Category(models.Model):
     name = models.CharField(max_length=200, db_index=True)
     slug = models.SlugField(max_length=200, db_index=True, unique=True)
+    description = models.CharField(max_length=255, null=True)
 
     class Meta:
         ordering = ['name']
@@ -36,6 +38,7 @@ class Subcategory(models.Model):
                                  verbose_name="Категория")
     name = models.CharField(max_length=200, db_index=True)
     slug = models.SlugField(max_length=200, db_index=True, unique=True)
+    description = models.CharField(max_length=255, null=True)
 
     class Meta:
         ordering = ['name']

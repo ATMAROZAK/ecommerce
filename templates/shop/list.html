@@ -7,13 +7,13 @@
 
     {% for cat in categories %}
 
-        <a href="{{ cat.get_absolute_url }}" class="list-group-item ">{{ cat.name }}</a>
-        <ul class="list-group">
-            <li class="list-group-item">
+        <a href="{{ cat.get_absolute_url }}" {% if cat.slug == category.slug %} class="list-group-item active"{% else %}class="list-group-item" {% endif %}>{{ cat.name }}</a>
+        <ul class="list-group bg-dark">
+            <li class="list-group-item bg-dark">
                 <br>
                 {% for sub in subcategories %}
                     {% if sub.category.name == cat.name %}
-                            <a href="{{ sub.get_absolute_url }}" class="list-group-item">{{ sub.name }}</a>
+                            <a href="{{ sub.get_absolute_url }}" {% if sub.slug == subcategory.slug %} class="list-group-item active"{% else %}class="list-group-item" {% endif %}>{{ sub.name }}</a>
                         <br>
                     {% endif %}
                 {% endfor %}

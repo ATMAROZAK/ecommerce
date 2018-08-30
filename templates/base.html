@@ -56,7 +56,6 @@
         <div class="col-md-3 col-sm-3">
             <br>
             <div>
-
                 {% block category %} {% endblock %}
             </div>
             <br>
@@ -64,8 +63,10 @@
 
 
 
-
         <div class="col-lg-9">
+
+        {% block carousel %} {% endblock %}
+            <br>
           <div class="row">
             {% block content %}{% endblock %}
           </div>

@@ -14,6 +14,7 @@ class CategoryAdmin(admin.ModelAdmin):
 # Модель подкатегории
 class SubcategoryAdmin(admin.ModelAdmin):
     list_display = ['name', 'category', 'slug']
+    list_filter = ['category',]
     prepopulated_fields = {'slug': ('name',)}
 
 # Модель товара
