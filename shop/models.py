@@ -26,14 +26,30 @@ class Category(models.Model):
     def __str__(self):
         return self.name
 
+#Моедль подкатегории
+class Subcategory(models.Model):
+    name = models.CharField(max_length=200, db_index=True)
+    slug = models.SlugField(max_length=200, db_index=True, unique=True)
+
+    class Meta:
+        ordering = ['name']
+        verbose_name = 'Подкатегория'
+        verbose_name_plural = 'Подкатегория'
+
+    def __str__(self):
+        return self.name
+
 
 # Модель продукта
 class Product(models.Model):
-    category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, related_name='products', verbose_name="Категория")
-    brand = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, verbose_name="Бренд")
+    category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, related_name='tobaccos',
+                                 verbose_name="Категория")
+    subcategory = models.ForeignKey(Subcategory, on_delete=models.SET_NULL, null=True, verbose_name="Подкатегория")
+    brand = models.ForeignKey(Brand, on_delete=models.SET_NULL, null=True, verbose_name="Бренд")
     name = models.CharField(max_length=200, db_index=True, verbose_name="Название")
     slug = models.SlugField(max_length=200, db_index=True)
     image = models.ImageField(upload_to='products/', blank=True, verbose_name="Изображение товара")
+    weight = models.PositiveIntegerField(default=100, verbose_name="Вес пачки")
     description = models.TextField(blank=True, verbose_name="Описание")
     price = models.DecimalField(max_digits=10, decimal_places=2, verbose_name="Цена")
     stock = models.PositiveIntegerField(verbose_name="На складе")
@@ -46,6 +62,9 @@ class Product(models.Model):
         index_together = [
             ['id', 'slug']
         ]
+        verbose_name = 'Товар'
+        verbose_name_plural = 'Товары'
 
     def __str__(self):
         return self.name
+
