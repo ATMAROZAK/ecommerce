@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 #Модель бренда
 class Brand(models.Model):
@@ -26,8 +27,13 @@ class Category(models.Model):
     def __str__(self):
         return self.name
 
+    def get_absolute_url(self):
+        return reverse('shop:ProductListByCategory', args=[self.slug])
+
 #Моедль подкатегории
 class Subcategory(models.Model):
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='subcategories',
+                                 verbose_name="Категория")
     name = models.CharField(max_length=200, db_index=True)
     slug = models.SlugField(max_length=200, db_index=True, unique=True)
 
@@ -38,6 +44,9 @@ class Subcategory(models.Model):
 
     def __str__(self):
         return self.name
+
+    def get_absolute_url(self):
+        return reverse('shop:ProductListBySubcategory', args=[self.category.slug, self.slug])
 
 
 # Модель продукта
@@ -67,4 +76,7 @@ class Product(models.Model):
 
     def __str__(self):
         return self.name
+
+    def get_absolute_url(self):
+        return reverse('shop:ProductDetail', args=[self.id, self.slug])
 

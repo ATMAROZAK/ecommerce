@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% block title %}
+  {% if category %} {{ category.name }} {% else %} Страница товаров {% endif %}
+{% endblock %}
+
+{% block category %}
+
+    {% for cat in categories %}
+
+        <a href="{{ cat.get_absolute_url }}" class="list-group-item ">{{ cat.name }}</a>
+        <ul class="list-group">
+            <li class="list-group-item">
+                <br>
+                {% for sub in subcategories %}
+                    {% if sub.category.name == cat.name %}
+                            <a href="{{ sub.get_absolute_url }}" class="list-group-item">{{ sub.name }}</a>
+                        <br>
+                    {% endif %}
+                {% endfor %}
+            </li>
+        </ul>
+        <br>
+    {% endfor %}
+
+
+
+
+{% endblock %}
+{% block content %}
+    {% for product in products %}
+        <div class="col-lg-4 col-md-6 mb-4">
+          <div class="card h-100">
+            <a href="#"><img class="card-img-top" src="{{ product.image.url }}" alt=""></a>
+            <div class="card-body">
+              <h4 class="card-title">
+                <a href="{{ product.get_absolute_url }}">{{ product.name }}</a>
+              </h4>
+
+              <p class="card-text">{{ product.description }}</p>
+             <h5>{{ product.price }}р.</h5>
+            </div>
+
+            <div class="card-footer">
+              <button type="button" class="btn btn-default btn-sm">
+                <span class="glyphicon glyphicon-shopping-cart"></span> В корзину
+              </button>
+            </div>
+          </div>
+        </div>
+    {% endfor %}
+{% endblock %}

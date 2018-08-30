@@ -4,17 +4,17 @@ from .models import Category, Subcategory, Brand, Product
 #Модель бренда
 class BrandAdmin(admin.ModelAdmin):
     list_display = ['name', 'slug']
-    prepopulated_fields = {'slug': ('name', )}
+    prepopulated_fields = {'slug': ('name',)}
 
 # Модель категории
 class CategoryAdmin(admin.ModelAdmin):
     list_display = ['name', 'slug']
-    prepopulated_fields = {'slug': ('name', )}
+    prepopulated_fields = {'slug': ('name',)}
 
 # Модель подкатегории
 class SubcategoryAdmin(admin.ModelAdmin):
-    list_display = ['name', 'slug']
-    prepopulated_fields = {'slug': ('name', )}
+    list_display = ['name', 'category', 'slug']
+    prepopulated_fields = {'slug': ('name',)}
 
 # Модель товара
 class ProductAdmin(admin.ModelAdmin):
