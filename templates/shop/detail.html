@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-
+{% load widget_tweaks %}
 
 {% block category %}
     {% for cat in categories %}
@@ -36,7 +36,7 @@
         {{ product.price }} руб.
       </p>
         <form action="{% url "cart:CartAdd" product.id %}" method="post">
-            {{ cart_product_form }}
+            {% render_field cart_product_form.quantity class="form-control" %}
             {% csrf_token %}
             <input type="submit" value="Добавить в корзину">
         </form>

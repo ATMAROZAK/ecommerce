@@ -48,7 +48,6 @@
                         <tr>
                             <td></td>
                             <td></td>
-
                             <td></td>
                             <td><strong>Итого</strong></td>
                             <td class="text-right"><strong>{{ cart.get_total_price }} р.</strong></td>
@@ -63,7 +62,7 @@
                     <button class="btn btn-block btn-light" onclick="location.href='{% url "shop:ProductList"%}'">Продолжить покупки</button>
                 </div>
                 <div class="col-sm-12 col-md-6 text-right">
-                    <button class="btn btn-lg btn-block btn-success text-uppercase">Оплата</button>
+                    <button class="btn btn-lg btn-block btn-success text-uppercase" onclick="location.href='{% url "orders:OrderCreate" %}'">Оформить заказ</button>
                 </div>
             </div>
         </div>

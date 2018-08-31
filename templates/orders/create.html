@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% load widget_tweaks %}
+{% block title %}
+  Оформление заказа
+{% endblock %}
+
+{% block cart_detail %}
+  <h1>Оформление заказа</h1>
+  <div class="col-sm-4">
+    <h2>Заполните форму</h2>
+    <form class="order-form" action="." method="post">
+      {% for field in form.visible_fields %}
+      <div class="form-group">
+        <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+        {{ field|add_class:'form-control' }}
+        {% for error in field.errors %}
+          <span class="help-block">{{ error }}</span>
+        {% endfor %}
+      </div>
+    {% endfor %}
+      {% csrf_token %}
+      <input type="submit" value="Отправить">
+    </form>
+  </div>
+
+  <div class="order-info col-sm-8">
+    <h2>Ваш заказ</h2>
+    <ul>
+      {% for item in cart  %}
+        <li>
+          {{ item.product.name }} | Количество: {{ item.quantity }} | Цена: {{ item.total_price }}
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+{% endblock %}
