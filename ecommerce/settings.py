@@ -134,5 +134,6 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
 CART_SESSION_ID = 'cart'
+SHIPPING_CART_SESSION_ID = 'shipping_cart'
 
 django_heroku.settings(locals())

@@ -36,21 +36,21 @@
                             <td></td>
                             <td></td>
                             <td>Товары</td>
-                            <td class="text-right">0 р.</td>
+                            <td class="text-right">{{ cart.get_total_price }} р.</td>
                         </tr>
                         <tr>
                             <td></td>
                             <td></td>
                             <td></td>
                             <td>Доставка</td>
-                            <td class="text-right">0 р.</td>
+                            <td class="text-right">{{ shipping_cart.get_total_price }} р.</td>
                         </tr>
                         <tr>
                             <td></td>
                             <td></td>
                             <td></td>
                             <td><strong>Итого</strong></td>
-                            <td class="text-right"><strong>{{ cart.get_total_price }} р.</strong></td>
+                            <td class="text-right"><strong>{{ total_price }} р.</strong></td>
                         </tr>
                     </tbody>
                 </table>
