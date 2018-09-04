@@ -42,7 +42,12 @@
                             <td></td>
                             <td></td>
                             <td></td>
-                            <td>Доставка</td>
+                            <td><form action="{% url "cart:ShippingAdd" %}" method="post" class="add">
+                                    {{ shipping_form.as_p }}
+
+                                    {% csrf_token %}
+                                    <input type="submit" value="Обновить">
+                                </form></td>
                             <td class="text-right">{{ shipping_cart.get_total_price }} р.</td>
                         </tr>
                         <tr>

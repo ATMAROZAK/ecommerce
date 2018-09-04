@@ -10,6 +10,7 @@ class Order(models.Model):
     postal_code = models.CharField(verbose_name='Почтовый код', max_length=20)
     city = models.CharField(verbose_name='Город', max_length=100)
     comment = models.CharField(verbose_name='Комментарий', max_length=250)
+    shipping = models.CharField(verbose_name='Доставка', max_length=30, default='')
     created = models.DateTimeField(verbose_name='Создан', auto_now_add=True)
     updated = models.DateTimeField(verbose_name='Обновлен', auto_now=True)
     total_price = models.DecimalField(verbose_name='Итого', max_digits=10, decimal_places=2, default=0)

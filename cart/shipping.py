@@ -25,7 +25,7 @@ class ShippingCart(object):
 
         if 'shipping' not in self.shipping_cart:
             self.shipping_cart['shipping'] = {'price': str(shipping.price),
-                                              'quantity' : 0}
+                                              'id' : shipping.id}
         self.save()
 
     def remove(self):

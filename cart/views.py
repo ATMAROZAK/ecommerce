@@ -1,9 +1,10 @@
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404, HttpResponse
 from django.views.decorators.http import require_POST
 from shop.models import Product
+from .models import Shipping
 from .cart import Cart
 from .shipping import ShippingCart
-from .forms import CartAddProductForm
+from .forms import CartAddProductForm, ShippingForm
 
 
 @require_POST
@@ -15,6 +16,17 @@ def CartAdd(request, product_id):
         cd = form.cleaned_data
         cart.add(product=product, quantity=cd['quantity'],
                                   update_quantity=cd['update'])
+    return redirect('cart:CartDetail')
+
+
+@require_POST
+def ShippingAdd(request):
+    shipping_cart = ShippingCart(request)
+    #shipping = get_object_or_404(Shipping, id=shipping_id)
+    form = ShippingForm(request.POST)
+    if form.is_valid():
+        cd = form.cleaned_data
+        shipping_cart.add_shipping(shipping=cd['shipping'], update=True)
     return redirect('cart:CartDetail')
 
 
@@ -43,6 +55,11 @@ def CartDetail(request):
                 'quantity': item['quantity'],
                 'update': True
             })
+
+    shipping_form = ShippingForm(initial={
+                'shipping' : Shipping.objects.get(id=shipping_cart.shipping_cart['shipping']['id'])
+            })
     return render(request, 'cart/detail.html', {'cart': cart,
                                                 'shipping_cart': shipping_cart,
+                                                'shipping_form': shipping_form,
                                                 'total_price' : total_price})
