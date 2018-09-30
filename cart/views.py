@@ -59,6 +59,7 @@ def CartDetail(request):
     shipping_form = ShippingForm(initial={
                 'shipping' : Shipping.objects.get(id=shipping_cart.shipping_cart['shipping']['id'])
             })
+    print(cart.cart)
     return render(request, 'cart/detail.html', {'cart': cart,
                                                 'shipping_cart': shipping_cart,
                                                 'shipping_form': shipping_form,
