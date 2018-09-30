@@ -14,7 +14,8 @@
 
     <!-- Bootstrap core CSS -->
     <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
-
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:300" rel="stylesheet"> 
     <!-- Custom styles for this template -->
     <link href="{% static 'css/shop-homepage.css' %}" rel="stylesheet">
 
@@ -25,7 +26,9 @@
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
       <div class="container">
-        <a class="navbar-brand" href="#">Dark Side shop</a>
+        <div class="logo-cont">
+          <a class="logo" href="{% url 'shop:ProductList' %}">DARKSIDE SHOP</a>
+        </div>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -43,13 +46,13 @@
               <a class="nav-link" href="#">Контакты</a>
             </li>
             <li>
-                <button class="btn btn-outline-primary" onclick="location.href='{% url "cart:CartDetail" %}'">
+                <button class="btn btn-outline-primary cart-but" onclick="location.href='{% url "cart:CartDetail" %}'">
                     {% with total_items=cart|length %}
                         {% if cart|length > 0 %}
-                            Корзина:
+                            <i class="fas fa-cart-arrow-down"></i> Корзина:
                                 {{ total_items }} тов. {{ cart.get_total_price }} руб.
                          {% else %}
-                              Корзина пустая
+                            <i class="fas fa-shopping-cart"></i> Корзина пустая
                         {% endif %}
                     {% endwith %}
                 </button>
@@ -60,11 +63,11 @@
     </nav>
 
     <!-- Page Content -->
-    <div class="container">
+    <div class="container main">
 
       <div class="row">
-      <div class="col-lg12">{% block cart_detail %}{% endblock %}</div>
-        <div class="col-lg-3">
+        <div class="col-lg-12">{% block cart_detail %}{% endblock %}</div>
+        <div class="col-lg-3 sidemenu">
             <br>
             <div>
                 {% block category %} {% endblock %}
@@ -87,9 +90,9 @@
     <!-- /.container -->
 
     <!-- Footer -->
-    <footer class="py-5 bg-dark">
+    <footer class="py-4 bg-dark footer">
       <div class="container">
-        <p class="m-0 text-center text-white">Copyright &copy; Your Website 2017</p>
+        <p class="m-0 text-center text-white">Copyright &copy; DarkSide 2018</p>
       </div>
       <!-- /.container -->
     </footer>

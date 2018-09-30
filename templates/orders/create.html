@@ -5,11 +5,35 @@
 {% endblock %}
 
 {% block cart_detail %}
-  <h1>Оформление заказа</h1>
-  <div class="col-sm-4">
+  <h1 class="text-center pb-4 pt-3">Оформление заказа</h1>
+  <div class="row">
+  <div class="col-sm-5">
+    
     <h2>Заполните форму</h2>
+    <div class="or-form">
     <form class="order-form" action="." method="post">
-      {% for field in form.visible_fields %}
+      <div class="flex">
+        <div class="block">
+          <label>Имя</label>
+          {% render_field form.first_name class="form-control" %}
+        </div>
+        <div class="block">
+          <label>Фамилия</label>
+          {% render_field form.last_name class="form-control" %}
+        </div>
+      </div>
+      <label>E-mail</label>
+      {% render_field form.email class="form-control" %}
+      <label>Адрес</label>
+      {% render_field form.address class="form-control" %}
+      <label>Почтовый код</label>
+      {% render_field form.postal_code class="form-control" %}
+      <label>Город</label>
+      {% render_field form.city class="form-control" %}
+      <label>Комментарий</label>
+      {% render_field form.comment class="form-control" rows="10" %}
+    </div>
+
       <div class="form-group">
         <label for="{{ field.id_for_label }}">{{ field.label }}</label>
         {{ field|add_class:'form-control' }}
@@ -17,13 +41,13 @@
           <span class="help-block">{{ error }}</span>
         {% endfor %}
       </div>
-    {% endfor %}
+
       {% csrf_token %}
-      <input type="submit" value="Отправить">
+      <button class="btn" type="submit">Отправить</button>
     </form>
   </div>
 
-  <div class="order-info col-sm-8">
+  <div class="order-info col-sm-7">
     <h2>Ваш заказ</h2>
     <ul>
       {% for item in cart  %}
@@ -32,5 +56,6 @@
         </li>
       {% endfor %}
     </ul>
+  </div>
   </div>
 {% endblock %}

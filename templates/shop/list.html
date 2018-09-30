@@ -27,13 +27,19 @@
 
 {% block description %}
     {% if subcategory %}
+      <div class="desc">
         <h1>{{ subcategory.name }}</h1>
+        <h1 class="tire">-</h1>
         <p1>{{ subcategory.description }}</p1>
-        <hr>
+
+      </div>
     {% elif category %}
+      <div class="desc">
         <h1>{{ category.name }}</h1>
+        <h1 class="tire">-</h1>
         <p1>{{ category.description }}</p1>
-        <hr>
+
+      </div>
     {% endif %}
 {% endblock %}
 
