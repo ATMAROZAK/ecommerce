@@ -139,10 +139,16 @@ body {
 .main {
 	padding-top: 25px;
 	margin-bottom: 200px;
-	
+
 
 }
 
+.ship label {
+  margin-top: 0 !important;
+}
+.ship {
+  margin-bottom: 20px;
+}
 
 .desc {
 	background-color: white !important;

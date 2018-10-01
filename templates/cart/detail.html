@@ -23,6 +23,33 @@
                             </div>
                         {% endwith %}
                     {% endfor %}
+
+        <div class="ship">
+
+                  <div class="row">
+                    <div class="col-md-6">
+                      <label for="">Способ доставки:</label>
+                      <form action="{% url "cart:ShippingAdd" %}" method="post" class="add">
+                        {% render_field shipping_form.shipping class="form-control" %}
+
+                        {% csrf_token %}
+                        <input type="submit" value="Обновить">
+                      </form>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="row">
+                        <div class="col-md-7">
+                          <h3>Сумма доставки:</h3>
+                          <h3>Сумма товаров:</h3>
+                        </div>
+                        <div class="col-md-5">
+                          <h3>{{ shipping_cart.get_total_price }} р.</h3>
+                          <h3>{{ cart.get_total_price }} р.</h3>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
         </div>
         <div class="col mb-2">
             <div class="row">
@@ -32,9 +59,7 @@
                     <button class="btn btn-block btn-light incartbut" onclick="location.href='{% url "shop:ProductList"%}'">Продолжить покупки</button>
                 </div>
                     <div class="col-sm-12 col-md-6 text-right">
-                    <button class="btn btn-default btn-sm" onclick="location.href='{% url "orders:OrderCreate" %}'">
-                        <span class="glyphicon glyphicon-shopping-cart"></span> Оформить заказ
-                  </button>
+                    <button class="btn btn-lg btn-block btn-sm text-uppercase incartbut" onclick="location.href='{% url "orders:OrderCreate" %}'">Оформить заказ на <strong>{{ total_price }} р.</strong></button>
                 </div>
                 {% else %}
 <div class="col-sm-12 col-md-12 text-center">
