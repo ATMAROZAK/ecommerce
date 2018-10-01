@@ -55,7 +55,7 @@
     {% for product in products %}
         <div class="col-lg-4 col-md-6 mb-4">
           <div class="card h-100">
-            <a href="#"><img class="card-img-top" src="{{ product.image.url }}" alt=""></a>
+            <a href="{{ product.get_absolute_url }}"><img class="card-img-top" src="{{ product.image.url }}" alt=""></a>
             <div class="card-body">
               <h4 class="card-title">
                 <a href="{{ product.get_absolute_url }}">{{ product.name }}</a>
@@ -64,9 +64,13 @@
              <h5>{{ product.price }}р.</h5>
             </div>
             <div class="card-footer">
-              <button type="button" class="btn btn-default btn-sm">
-                <span class="glyphicon glyphicon-shopping-cart"></span> В корзину
-              </button>
+                <form action="{% url "cart:CartAdd" product.id %}" method="post">
+                  {% csrf_token %}
+                    <input type="hidden" value="1" name="quantity">
+                    <button class="btn btn-default btn-sm" type="submit">
+                    <span class="glyphicon glyphicon-shopping-cart"></span> В корзину
+                  </button>
+                </form>
             </div>
           </div>
         </div>

@@ -40,7 +40,7 @@
         {% render_field cart_product_form.quantity class="form-control" %}
         {% csrf_token %}
         <!-- <input type="submit" value="Добавить в корзину"> -->
-        <button class="btn but my-4" type="sumbit">Добавить в корзину</button>
+        <button class="btn but my-4" type="submit">Добавить в корзину</button>
       </form>
       <span>
       {{ product.description | linebreaks}}
