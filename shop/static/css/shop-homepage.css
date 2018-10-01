@@ -139,7 +139,7 @@ body {
 .main {
 	padding-top: 25px;
 	margin-bottom: 200px;
-	height: 100%;
+	
 
 }
 
@@ -321,7 +321,7 @@ label {
 
 @media (max-width: 900px) {
 	.footer {
-		position: static;
+
 	}
 	td img, .trash {
 		display: none;
