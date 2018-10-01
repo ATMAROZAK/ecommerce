@@ -10,7 +10,7 @@
                             <div class="row odna-stroka">
                               <div class="pic col-md-4">
                                 <img src="{{ product.image.url }}" width="256" height="128"/>
-                                <p class="proname">{{ product.name }}</p>
+                                  <a href="{{ product.get_absolute_url }}"><p class="proname">{{ product.name }}</p></a>
                               </div>
                               <div class="qua col-md-3"><form action="{% url "cart:CartAdd" product.id %}" method="post" class="add">
                                     {{ item.update_quantity_form.quantity }}
@@ -26,12 +26,28 @@
         </div>
         <div class="col mb-2">
             <div class="row">
+
+                {% if cart.cart %}
                 <div class="col-sm-12  col-md-6">
                     <button class="btn btn-block btn-light incartbut" onclick="location.href='{% url "shop:ProductList"%}'">Продолжить покупки</button>
                 </div>
-                <div class="col-sm-12 col-md-6 text-right">
-                    <button class="btn btn-lg btn-block btn-success text-uppercase incartbut" onclick="location.href='{% url "orders:OrderCreate" %}'">Оформить заказ</button>
+                    <div class="col-sm-12 col-md-6 text-right">
+                    <button class="btn btn-default btn-sm" onclick="location.href='{% url "orders:OrderCreate" %}'">
+                        <span class="glyphicon glyphicon-shopping-cart"></span> Оформить заказ
+                  </button>
                 </div>
+                {% else %}
+<div class="col-sm-12 col-md-12 text-center">
+                        <br>
+                    <p1>Корзина пуста</p1>
+                </div>
+                    <div class="col-sm-12  col-md-12">
+                        <br>
+                    <button class="btn btn-block btn-light incartbut" onclick="location.href='{% url "shop:ProductList"%}'">Продолжить покупки</button>
+                </div>
+
+                {% endif %}
+
             </div>
         </div>
     </div>

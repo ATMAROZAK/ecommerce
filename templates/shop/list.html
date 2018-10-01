@@ -60,9 +60,13 @@
             </div>
 
             <div class="card-footer">
-              <button type="button" class="btn btn-default btn-sm">
-                <span class="glyphicon glyphicon-shopping-cart"></span> В корзину
-              </button>
+              <form action="{% url "cart:CartAdd" product.id %}" method="post">
+                  {% csrf_token %}
+                    <input type="hidden" value="1" name="quantity">
+                    <button class="btn btn-default btn-sm" type="submit">
+                        <span class="glyphicon glyphicon-shopping-cart"></span> В корзину
+                  </button>
+                </form>
             </div>
           </div>
         </div>
