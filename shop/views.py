@@ -50,3 +50,9 @@ def ProductDetail(request, brand_slug, slug):
                                                 'categories' : categories,
                                                 'subcategories': subcategories,
                                                 'cart_product_form': cart_product_form})
+
+
+
+from django.http import HttpResponse
+def payeer(request):
+    return HttpResponse("656214683")
