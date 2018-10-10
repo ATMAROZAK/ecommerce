@@ -61,7 +61,7 @@
                     <button class="btn btn-block btn-light incartbut" onclick="location.href='{% url "shop:ProductList"%}'">Continue shopping</button>
                 </div>
                     <div class="col-sm-12 col-md-6 text-right">
-                    <button class="btn btn-lg btn-block btn-sm text-uppercase incartbut" onclick="location.href='{% url "orders:OrderCreate" %}'">Place an order for <strong>{{ total_price }} р.</strong></button>
+                    <button class="btn btn-lg btn-block btn-sm text-uppercase incartbut" onclick="location.href='{% url "orders:OrderCreate" %}'">Place an order for <strong>{{ total_price }} $.</strong></button>
                 </div>
                 {% else %}
 <div class="col-sm-12 col-md-12 text-center">
