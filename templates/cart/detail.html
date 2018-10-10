@@ -19,16 +19,16 @@
                                     <input type="submit" value="Обновить">
                                 </form></div>
                               <div class="price col-md-3">{{ item.price }}р.</div>
-                              <div class="del col-md-2"><a href="{% url "cart:CartRemove" product.id %}">Удалить</a></div>
+                              <div class="del col-md-2"><a href="{% url "cart:CartRemove" product.id %}">Remove</a></div>
                             </div>
                         {% endwith %}
                     {% endfor %}
-
+{% if cart.cart %}
         <div class="ship">
 
                   <div class="row">
                     <div class="col-md-6">
-                      <label for="">Способ доставки:</label>
+                      <label for="">Shipping method:</label>
                       <form action="{% url "cart:ShippingAdd" %}" method="post" class="add">
                         {% render_field shipping_form.shipping class="form-control" %}
 
@@ -39,36 +39,38 @@
                     <div class="col-md-6">
                       <div class="row">
                         <div class="col-md-7">
-                          <h3>Сумма доставки:</h3>
-                          <h3>Сумма товаров:</h3>
+                          <h3>Shipping price:</h3>
+                          <h3>Items price:</h3>
                         </div>
                         <div class="col-md-5">
-                          <h3>{{ shipping_cart.get_total_price }} р.</h3>
-                          <h3>{{ cart.get_total_price }} р.</h3>
+                          <h3>{{ shipping_cart.get_total_price }} $.</h3>
+                          <h3>{{ cart.get_total_price }} $.</h3>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
         </div>
+
+    {% endif %}
         <div class="col mb-2">
             <div class="row">
 
                 {% if cart.cart %}
                 <div class="col-sm-12  col-md-6">
-                    <button class="btn btn-block btn-light incartbut" onclick="location.href='{% url "shop:ProductList"%}'">Продолжить покупки</button>
+                    <button class="btn btn-block btn-light incartbut" onclick="location.href='{% url "shop:ProductList"%}'">Continue shopping</button>
                 </div>
                     <div class="col-sm-12 col-md-6 text-right">
-                    <button class="btn btn-lg btn-block btn-sm text-uppercase incartbut" onclick="location.href='{% url "orders:OrderCreate" %}'">Оформить заказ на <strong>{{ total_price }} р.</strong></button>
+                    <button class="btn btn-lg btn-block btn-sm text-uppercase incartbut" onclick="location.href='{% url "orders:OrderCreate" %}'">Place an order for <strong>{{ total_price }} р.</strong></button>
                 </div>
                 {% else %}
 <div class="col-sm-12 col-md-12 text-center">
                         <br>
-                    <p1>Корзина пуста</p1>
+                    <p1>Cart is empty</p1>
                 </div>
                     <div class="col-sm-12  col-md-12">
                         <br>
-                    <button class="btn btn-block btn-light incartbut" onclick="location.href='{% url "shop:ProductList"%}'">Продолжить покупки</button>
+                    <button class="btn btn-block btn-light incartbut" onclick="location.href='{% url "shop:ProductList"%}'">Continue shopping</button>
                 </div>
 
                 {% endif %}
