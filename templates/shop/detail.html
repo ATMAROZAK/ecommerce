@@ -39,7 +39,7 @@
         <h1>{{ product.name }}</h1>
 
       <p class="price">
-        {{ product.price }} руб.
+        {{ product.price }} $.
       </p>
       <form action="{% url "cart:CartAdd" product.id %}" method="post">
         {% render_field cart_product_form.quantity class="form-control" %}
@@ -48,7 +48,7 @@
         <!-- <input type="submit" value="Добавить в корзину"> -->
 
           <button class="btn btn-default btn-sm" type="submit">
-                        <span class="glyphicon glyphicon-shopping-cart"></span> Добавить в корзину
+                        <span class="glyphicon glyphicon-shopping-cart"></span> Add to Cart
           </button>
       </form>
 
