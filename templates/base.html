@@ -51,7 +51,7 @@
                         {% if cart|length == 0 %}
                             <i class="fas fa-cart-arrow-down"></i> Cart:
                                 {{ total_items }} item {{ cart.get_total_price }} $.
-                      {% elif%}
+                      {% elif cart|length > 0 %}
                   <i class="fas fa-cart-arrow-down"></i> Cart:
                                 {{ total_items }} items {{ cart.get_total_price }} $.
                          {% else %}
